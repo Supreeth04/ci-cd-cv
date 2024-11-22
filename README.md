@@ -1,6 +1,6 @@
 # MNIST Classification with PyTorch
 
-[![Model Tests](https://github.com/yourusername/mnist-classification/actions/workflows/build-pipeline.yml/badge.svg)](https://github.com/yourusername/mnist-classification/actions/workflows/build-pipeline.yml)
+[![Model Tests](https://github.com/Supreeth04/ci-cd-cv/actions/workflows/build-pipeline.yml/badge.svg)]((https://github.com/Supreeth04/ci-cd-cv/actions/workflows/build-pipeline.yml))
 
 A lightweight CNN model for MNIST digit classification that achieves >95% accuracy in one epoch while maintaining parameter count under 25,000.
 
