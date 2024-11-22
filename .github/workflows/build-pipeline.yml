@@ -1,0 +1,43 @@
+name: Model Tests
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.8'
+
+    - name: Cache pip
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install torch torchvision tqdm numpy
+
+    - name: Run parameter count test
+      run: |
+        python -c "
+        from model import CustomNeuralNetwork, count_parameters
+        model = CustomNeuralNetwork()
+        param_count = count_parameters(model)
+        assert param_count < 25000, f'Model has {param_count:,} parameters, exceeding 25,000'
+        print(f'✓ Parameter test passed! Model has {param_count:,} parameters')
+        "
+
+    - name: Run full model test
+      run: |
+        python test_model.py

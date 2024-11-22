@@ -1,2 +1,4 @@
-torch
-torchvision
+torch == 2.2.0
+tqdm
+numpy < 2
+torchvision == 0.17.0
