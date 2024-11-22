@@ -14,16 +14,16 @@ def train_model():
     model_params = count_parameters(model)
     print(f"Total trainable parameters: {model_params:,}")
     
-    # Optimized training settings
-    optimizer = Adam(model.parameters(), lr=0.001, weight_decay=1e-5)
+    # Adjusted training settings for smaller model
+    optimizer = Adam(model.parameters(), lr=0.0001)  # Increased base learning rate
     scheduler = torch.optim.lr_scheduler.OneCycleLR(
         optimizer, 
-        max_lr=0.005,
-        steps_per_epoch=469,
+        max_lr=0.005,  # Increased max learning rate
+        steps_per_epoch=60000,
         epochs=1,
         pct_start=0.1,
         div_factor=10.0,
-        final_div_factor=100.0
+        final_div_factor=10.0
     )
     
     criterion = nn.CrossEntropyLoss()
@@ -47,7 +47,7 @@ def train_model():
         loss.backward()
         
         # Gradient clipping
-        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=0.5)
+        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
         
         optimizer.step()
         scheduler.step()
@@ -68,3 +68,6 @@ def train_model():
     print(f"\nFinal Training Accuracy: {accuracy:.4f}")
     
     return accuracy, model_params
+
+if __name__ == "__main__":
+    train_model()

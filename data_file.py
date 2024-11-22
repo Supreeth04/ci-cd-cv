@@ -1,4 +1,4 @@
-from torchvision.datasets import MNIST
+from torchvision.datasets import MNIST, FashionMNIST
 from torch.utils.data import DataLoader
 import torchvision.transforms as transforms
 
@@ -18,9 +18,9 @@ def trainDataAndLoad():
 
     train_loader = DataLoader(
         train_data,
-        batch_size=128,
+        batch_size=1,
         shuffle=True,
-        num_workers=2
+        num_workers=1
     )
 
     return train_loader
@@ -35,9 +35,9 @@ def testDataAndLoad():
 
     test_loader = DataLoader(
         test_data,
-        batch_size=128,
+        batch_size=1,
         shuffle=False,
-        num_workers=2
+        num_workers=1
     )
 
     return test_loader
