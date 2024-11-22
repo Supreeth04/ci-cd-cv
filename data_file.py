@@ -18,7 +18,7 @@ def trainDataAndLoad():
 
     train_loader = DataLoader(
         train_data,
-        batch_size=1,
+        batch_size=10,
         shuffle=True,
         num_workers=1
     )
@@ -35,7 +35,7 @@ def testDataAndLoad():
 
     test_loader = DataLoader(
         test_data,
-        batch_size=1,
+        batch_size=10,
         shuffle=False,
         num_workers=1
     )

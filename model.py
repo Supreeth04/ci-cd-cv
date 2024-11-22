@@ -7,22 +7,22 @@ class CustomNeuralNetwork(nn.Module):
         self.conv1 = nn.Conv2d(1, 4, kernel_size=3, padding=1)
         self.conv2 = nn.Conv2d(4, 8, kernel_size=3, padding=1)
         
-        self.batchnorm1 = nn.BatchNorm2d(4)
-        self.batchnorm2 = nn.BatchNorm2d(8)
+        # self.batchnorm1 = nn.BatchNorm2d(4)
+        # self.batchnorm2 = nn.BatchNorm2d(8)
         
         self.fc1 = nn.Linear(8 * 7 * 7, 32)
         self.fc2 = nn.Linear(32, 10)
         
-        self.dropout = nn.Dropout(0.1)
+        self.dropout = nn.Dropout(0.005)
 
     def forward(self, x):
         x = self.conv1(x)
-        x = self.batchnorm1(x)
+        # x = self.batchnorm1(x)
         x = F.relu(x)
         x = F.max_pool2d(x, 2)
         
         x = self.conv2(x)
-        x = self.batchnorm2(x)
+        # x = self.batchnorm2(x)
         x = F.relu(x)
         x = F.max_pool2d(x, 2)
         

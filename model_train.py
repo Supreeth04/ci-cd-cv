@@ -19,10 +19,10 @@ def train_model():
     scheduler = torch.optim.lr_scheduler.OneCycleLR(
         optimizer, 
         max_lr=0.005,  # Increased max learning rate
-        steps_per_epoch=60000,
+        steps_per_epoch=6000,
         epochs=1,
         pct_start=0.1,
-        div_factor=10.0,
+        div_factor=1.0,
         final_div_factor=10.0
     )
     
