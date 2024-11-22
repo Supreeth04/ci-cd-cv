@@ -1,5 +1,7 @@
 # MNIST Classification with PyTorch
 
+[![Model Tests](https://github.com/yourusername/mnist-classification/actions/workflows/build-pipeline.yml/badge.svg)](https://github.com/yourusername/mnist-classification/actions/workflows/build-pipeline.yml)
+
 A lightweight CNN model for MNIST digit classification that achieves >95% accuracy in one epoch while maintaining parameter count under 25,000.
 
 ## Project Structure
@@ -140,6 +142,7 @@ Automated testing via GitHub Actions:
 ## Observations
 
 ### 1. Batch Size Impact on Accuracy
+
 - As the batch_size reduced from 128 -> 100 -> 50 -> 10, the accuracy increased for the model
 - Batch size progression:
   - 128: Lower accuracy
@@ -147,9 +150,13 @@ Automated testing via GitHub Actions:
   - 50: Better performance
   - 10: Best accuracy
 
-**Assumption:** As the model is seeing every image, I am pretty sure it is trying to memorise instead of learning from the image.
+**Assumption:** 
+
+* As the model is seeing every image, I am pretty sure it is trying to memorise instead of learning from the image.
+* Hence when the inferencing will be done, it will 100% give wrong answers.
 
 ### 2. Dropout's Effect on Performance
+
 - As the dropout value decreased, the model's accuracy increased
 - Progression:
   - 0.25: Lower accuracy
